@@ -14,6 +14,7 @@ class CProcess
 public:
 	CProcess(HANDLE processHandle, HANDLE threadHandle);
 	CProcess( const CProcess & ) = delete;
+	~CProcess();
 
 	static std::shared_ptr<CProcess> CreateChildProcess( winpipes::CPipeSPtr pipe );
 

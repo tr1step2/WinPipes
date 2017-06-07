@@ -19,6 +19,12 @@ winpipes::CProcess::CProcess( HANDLE processHandle, HANDLE threadHandle )
 	m_threadHandle.Attach( threadHandle );
 }
 
+winpipes::CProcess::~CProcess()
+{
+	::WaitForSingleObject(m_processHandle, DefaultWaitProcTimeout);
+	::TerminateProcess(m_processHandle, NO_ERROR);
+}
+
 winpipes::CProcessSPtr winpipes::CProcess::CreateChildProcess( winpipes::CPipeSPtr pipe )
 {
 	PROCESS_INFORMATION procInfo;

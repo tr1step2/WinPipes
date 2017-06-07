@@ -19,11 +19,9 @@ void main_impl( int argc, char ** argv )
 	if ( !ofs )
 		throw std::runtime_error("Can't open output file for write");
 
-	auto pipe = winpipes::CPipe::CreatePipeFromStd();
-
 	do
 	{
-		data = pipe->Read();
+		std::cin >> data;
 		ofs.write( data.data(), data.length() );
 
 	} while ( data != "close_pipe" );
